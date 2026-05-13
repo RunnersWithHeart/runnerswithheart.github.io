@@ -26,14 +26,72 @@ body {
 }
 
 .site-header {
-    background: linear-gradient(135deg, var(--primary), #2f6a9e);
+    background:
+        linear-gradient(180deg, rgba(31, 77, 122, 0.84), rgba(47, 106, 158, 0.84)),
+        url("https://leasidelife.com/wp-content/uploads/2024/08/runnersUHN_featured-1024x576.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
     color: #fff;
-    padding: 48px 0 24px;
+    padding: 88px 0 48px;
+    min-height: 420px;
+}
+
+.site-header .container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
 }
 
 .site-header h1 {
     margin: 0 0 8px;
     font-size: clamp(2rem, 4vw, 3rem);
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.top-cta {
+    display: inline-block;
+    margin-top: 8px;
+    align-self: center;
+}
+
+@media (max-width: 720px) {
+    .top-cta {
+        order: 2;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.brand-block {
+    min-width: 260px;
+}
+
+.site-header nav {
+    flex: 1 1 100%;
+}
+
+.site-header nav ul {
+    justify-content: flex-end;
+}
+
+@media (max-width: 720px) {
+    .site-header .container {
+        align-items: center;
+    }
+
+    .site-header nav {
+        order: 3;
+        width: 100%;
+    }
+
+    .top-cta {
+        order: 2;
+        width: 100%;
+        text-align: center;
+    }
 }
 
 .tagline {
