@@ -26,12 +26,7 @@ body {
 }
 
 .site-header {
-    background:
-        linear-gradient(180deg, rgba(31, 77, 122, 0.84), rgba(47, 106, 158, 0.84)),
-        url("https://leasidelife.com/wp-content/uploads/2024/08/runnersUHN_featured-1024x576.jpg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
+    background: linear-gradient(180deg, rgba(31, 77, 122, 0.84), rgba(47, 106, 158, 0.84));
     color: #fff;
     padding: 88px 0 48px;
     min-height: 420px;
@@ -149,7 +144,7 @@ nav a:hover {
 
 .news-cards .card {
     display: grid;
-    grid-template-columns: 140px 1fr;
+    grid-template-columns: 1fr;
     gap: 16px;
     align-items: flex-start;
 }
@@ -163,7 +158,7 @@ nav a:hover {
 }
 
 .news-cards .card .card-content {
-    grid-column: 2;
+    grid-column: 1;
 }
 
 .resource-links ul {
@@ -214,6 +209,17 @@ nav a:hover {
     padding: 14px 16px;
 }
 
+/* Make other sections match the Events accent on the left */
+.card {
+    border-left: 4px solid var(--accent);
+    padding-left: 14px;
+}
+
+/* For simple sections like About that use a top-level paragraph */
+.section .container > p {
+    border-left: 4px solid var(--accent);
+    padding-left: 14px;
+}
 .event-list h3 {
     margin: 0 0 6px;
 }
@@ -233,7 +239,7 @@ nav a:hover {
 
 .channel-list li {
     display: grid;
-    grid-template-columns: 60px 1fr;
+    grid-template-columns: 1fr;
     gap: 12px;
     align-items: flex-start;
 }
@@ -249,7 +255,7 @@ nav a:hover {
 }
 
 .channel-list .channel-content {
-    grid-column: 2;
+    grid-column: 1;
 }
 
 .channel-list a {
