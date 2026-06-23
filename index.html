@@ -52,21 +52,58 @@
         <section id="events" class="section">
             <div class="container">
                 <h2>Upcoming Events</h2>
-                <ul class="event-list">
-                    <li>
-                        <h3>Cardiac Rehab Yoga Session for International Yoga Day</h3>
-                        <p><strong>Date:</strong> Friday, June 19, 2026, 12:30 pm – 2:30 pm</p>
-                        <p><strong>Location:</strong> Indoor track, 347 Rumsey Road</p>
-                        <p>Celebrating International Day of Yoga in collaboration with the Canada India Foundation. Chair alternatives will be provided as best as possible.</p>
-                        <p>After the yoga session there will be speeches and a donor wall unveiling. Media will be onsite; if you would like to be featured with the media during this event, please let Priscilla know when you register.</p>
-                        <p>To attend, email <a href="mailto:Priscilla.Gonsalves@uhn.ca">Priscilla.Gonsalves@uhn.ca</a>.</p>
-                    </li>
-                    <li>
-                        <h3>Track Meet</h3>
-                        <p><strong>Date:</strong> TBD</p>
-                        <p><strong>Location:</strong> Rumsey Cardiac Rehabilitation Center</p>
-                    </li>
-                </ul>
+                <div class="events-tabs">
+                    <div class="tab-controls">
+                        <button class="tab-btn active" data-target="upcoming">Upcoming</button>
+                        <button class="tab-btn" data-target="past">Past</button>
+                    </div>
+
+                    <ul class="event-list" id="upcoming-list">
+                        <li data-date="2026-06-19">
+                            <h3>Cardiac Rehab Yoga Session for International Yoga Day</h3>
+                            <p><strong>Date:</strong> Friday, June 19, 2026, 12:30 pm – 2:30 pm</p>
+                            <p><strong>Location:</strong> Indoor track, 347 Rumsey Road</p>
+                            <p>Celebrating International Day of Yoga in collaboration with the Canada India Foundation. Chair alternatives will be provided as best as possible.</p>
+                            <p>After the yoga session there will be speeches and a donor wall unveiling. Media will be onsite; if you would like to be featured with the media during this event, please let Priscilla know when you register.</p>
+                            <p>To attend, email <a href="mailto:Priscilla.Gonsalves@uhn.ca">Priscilla.Gonsalves@uhn.ca</a>.</p>
+                        </li>
+                        <li data-date="2026-07-16">
+                            <h3>Track Meet</h3>
+                            <p><strong>Date:</strong> July 16, 2026</p>
+                            <p><strong>Location:</strong> Rumsey Cardiac Rehabilitation Center</p>
+                        </li>
+                        <li data-date="2026-08-13">
+                            <h3>Track Meet</h3>
+                            <p><strong>Date:</strong> August 13, 2026</p>
+                            <p><strong>Location:</strong> Rumsey Cardiac Rehabilitation Center</p>
+                        </li>
+                    </ul>
+
+                    <ul class="event-list hidden" id="past-list">
+                        <li>
+                            <h3>Track Meet</h3>
+                            <p><strong>Date:</strong> June 11, 2026</p>
+                            <p><strong>Location:</strong> Rumsey Cardiac Rehabilitation Center</p>
+                        </li>
+                        <li>
+                            <h3>We Walk UHNITED</h3>
+                            <p><strong>Date:</strong> May 30, 2026</p>
+                            <p><strong>Location:</strong> Toronto General Hospital, 201 Elizabeth St.</p>
+                            <p><strong>Details:</strong> Accessible 2 km and 5 km route for walkers, rollers, and all abilities. Celebration site opens at 8:00am and the walk begins at 9:30am.</p>
+                            <p><a href="https://www.wewalkuhnited.ca/register/we-walk-uhnited/participant" target="_blank" rel="noopener">Register for We Walk UHNITED</a></p>
+                        </li>
+                        <li>
+                            <h3>Track Meet</h3>
+                            <p><strong>Date:</strong> May 7, 2026</p>
+                            <p><strong>Location:</strong> Rumsey Cardiac Rehabilitation Center</p>
+                        </li>
+                        <li>
+                            <h3>Track Meet</h3>
+                            <p><strong>Date:</strong> April 2, 2026</p>
+                            <p><strong>Location:</strong> Rumsey Cardiac Rehabilitation Center</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -180,5 +217,31 @@
             <p class="disclaimer">The views and opinions of authors expressed in this website do not necessarily state or reflect those of UHN and they may not be used for advertising or product endorsement purposes. UHN does not endorse or recommend any commercial products, processes, or services.</p>
         </div>
     </footer>
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const target = button.dataset.target;
+                document.getElementById('upcoming-list').classList.toggle('hidden', target !== 'upcoming');
+                document.getElementById('past-list').classList.toggle('hidden', target !== 'past');
+            });
+        });
+
+        (function autoClassifyEvents() {
+            const today = new Date();
+            const upcomingList = document.getElementById('upcoming-list');
+            const pastList = document.getElementById('past-list');
+            if (!upcomingList || !pastList) return;
+            upcomingList.querySelectorAll('li').forEach(li => {
+                const dateValue = li.dataset.date;
+                if (!dateValue || dateValue.toUpperCase() === 'TBD') return;
+                const eventDate = new Date(dateValue);
+                if (!isNaN(eventDate) && eventDate < today) {
+                    pastList.appendChild(li);
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
